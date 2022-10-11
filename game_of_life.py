@@ -1,5 +1,5 @@
 class GameOfLife:
-    def __init__(self, n_rows: int, n_columns: int):
+    def __init__(self, n_rows: int, n_columns: int, coords):
         grid = []
         self.n_rows = n_rows
         self.n_columns = n_columns
@@ -12,10 +12,8 @@ class GameOfLife:
 
         self.grid = grid
 
-    def create_starter_grid(self, coords: list):
         for row, column in coords:
             self.grid[row][column] = "*"
-        return self
 
     def format_grid(self):
         return "\n".join(["".join(row) for row in self.grid])

@@ -1,7 +1,7 @@
 from game_of_life import GameOfLife
 import pytest
 
-demo_grid = GameOfLife(4, 8).create_starter_grid(
+demo_grid = GameOfLife(4, 8,
     [[1, 4], [2, 3], [2, 4]]
 )  # equal to example
 
@@ -61,7 +61,9 @@ def test_cycle():
 
 
 def test_final_board():
-    grid = GameOfLife(4, 8).create_starter_grid(
+    grid = GameOfLife(
+        4,
+        8,
         [
             [0, 0],
             [1, 0],
@@ -74,7 +76,7 @@ def test_final_board():
             [2, 5],
             [2, 6],
             [2, 7],
-        ]
+        ],
     )
     expected = """ ........
     ........
