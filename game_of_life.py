@@ -18,11 +18,7 @@ class GameOfLife:
         return self
 
     def format_grid(self):
-        output = ""
-        for row in self.grid:
-            output += "".join(row) + "\n"
-        output
-        return output[:-1]  # removes the last newline
+        return "\n".join(["".join(row) for row in self.grid])
 
     # find coordinates of live cells - REDUNDANT FUNCTION (SEE 4TH REQUIREMENT)
     def locate_live_cells(self):
