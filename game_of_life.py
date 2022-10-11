@@ -1,3 +1,6 @@
+import copy
+
+
 class GameOfLife:
     def __init__(self, n_rows: int, n_columns: int, coords):
         grid = []
@@ -60,7 +63,7 @@ class GameOfLife:
         return alive_count
 
     def cycle(self):
-        new_grid = self.grid[:]
+        new_grid = copy.deepcopy(self.grid)
 
         for i in range(self.n_rows):
             for j in range(self.n_columns):

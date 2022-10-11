@@ -34,12 +34,10 @@ def test_alive_count():
 
 
 # Note: Test cases are hard to keep and consider after implementing all rules
-def test_cycle():
-    grid = GameOfLife(4, 8).create_starter_grid(
-        [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1]]
-    )
+def test_cycle_1():
+    grid = GameOfLife(4, 8, [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1]])
     expected = """ *.*.....
-    ***.....
+    *.*.....
     ........
     ........""".replace(
         " ", ""
@@ -47,7 +45,7 @@ def test_cycle():
     assert grid.cycle().format_grid() == expected
 
 
-def test_cycle():
+def test_cycle_2():
     grid = demo_grid
     expected = """ ........
     ...**...
