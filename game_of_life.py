@@ -15,12 +15,12 @@ class GameOfLife:
 
     # find coordinates of live cells - REDUNDANT FUNCTION (SEE 4TH REQUIREMENT)
     def locate_live_cells(self):
-        live_coords = []
-        for i in range(self.n_rows):
-            for j in range(self.n_columns):
-                if self.grid[i][j] == "*":
-                    live_coords.append((i, j))
-        return live_coords
+        return [
+            (i, j)
+            for i in range(self.n_rows)
+            for j in range(self.n_columns)
+            if self.grid[i][j] == "*"
+        ]
 
     # find neighbors of a single cell
     # NOTE: also return out of bounds indexes, is ommitted in later functions with try except
