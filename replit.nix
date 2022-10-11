@@ -1,5 +1,6 @@
 { pkgs }: {
   deps = [
+    pkgs.python39Packages.black
     pkgs.vim
     pkgs.python38Full
   ];
