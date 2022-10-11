@@ -69,18 +69,12 @@ class GameOfLife:
             for j in range(self.n_columns):
                 cell = [i, j]
                 alive_count = self.alive_count(cell)
-                # print(cell, alive_count)
 
                 # dying because of underpopulation
-                if alive_count < 2 and new_grid[i][j] == "*":
+                if alive_count < 2 or alive_count > 3:
                     new_grid[i][j] = "."
-
-                # dying because of overcrowding
-                if alive_count > 3 and new_grid[i][j] == "*":
-                    new_grid[i][j] = "."
-
                 # becoming alive because of lively neighbors
-                if alive_count == 3:
+                elif alive_count == 3:
                     new_grid[i][j] = "*"
 
         self.grid = new_grid
