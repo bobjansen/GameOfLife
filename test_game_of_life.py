@@ -22,13 +22,13 @@ def test_locate_live_coords():
 
 
 def test_locate_neighbors():
-    input = GameOfLife.locate_neighbors([1, 4])
+    input = GameOfLife.locate_neighbors(1, 4)
     expected = [(0, 4), (2, 4), (1, 5), (1, 3), (0, 3), (0, 5), (2, 3), (2, 5)]
     assert set(input) == set(expected)
 
 
 def test_alive_count():
-    input = demo_grid.alive_count([2, 4])
+    input = demo_grid.alive_count(2, 4)
     expected = 2
     assert input == expected
 

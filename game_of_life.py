@@ -33,12 +33,8 @@ class GameOfLife:
     # find neighbors of a single cell
     # NOTE: also return out of bounds indexes, is ommitted in later functions with try except
     @staticmethod
-    def locate_neighbors(cell_index: list):
-
+    def locate_neighbors(row: int, column: int):
         neighbors = []
-        row = cell_index[0]
-        column = cell_index[1]
-
         neighbors.append((row, column - 1))  # left neighbor
         neighbors.append((row, column + 1))  # right neighbor
         neighbors.append((row - 1, column))  # upper neighbor
@@ -47,16 +43,15 @@ class GameOfLife:
         neighbors.append((row + 1, column - 1))  # diagonal left lower
         neighbors.append((row - 1, column + 1))  # diagonal right upper
         neighbors.append((row + 1, column + 1))  # diagonal right lower
-
         return neighbors  # THESE ARE POSSIBLE NEIGHBORS, SO ALSO OUT OF GRID
 
-    def alive_count(self, cell_index: list):
-        neighbors = GameOfLife.locate_neighbors(cell_index)
+    def alive_count(self, row: int, column: int):
+        neighbors = GameOfLife.locate_neighbors(row, column)
         alive_count = 0
 
-        for x, y in neighbors:
+        for neighbor_row, neighbor_column in neighbors:
             try:
-                if self.grid[x][y] == "*":
+                if self.grid[neighbor_row][neighbor_column] == "*":
                     alive_count += 1
             except:
                 continue
@@ -65,17 +60,16 @@ class GameOfLife:
     def cycle(self):
         new_grid = copy.deepcopy(self.grid)
 
-        for i in range(self.n_rows):
-            for j in range(self.n_columns):
-                cell = [i, j]
-                alive_count = self.alive_count(cell)
+        for row in range(self.n_rows):
+            for column in range(self.n_columns):
+                alive_count = self.alive_count(row, column)
 
                 # dying because of underpopulation
                 if alive_count < 2 or alive_count > 3:
-                    new_grid[i][j] = "."
+                    new_grid[row][column] = "."
                 # becoming alive because of lively neighbors
                 elif alive_count == 3:
-                    new_grid[i][j] = "*"
+                    new_grid[row][column] = "*"
 
         self.grid = new_grid
 
