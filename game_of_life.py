@@ -3,17 +3,9 @@ import copy
 
 class GameOfLife:
     def __init__(self, n_rows: int, n_columns: int, coords):
-        grid = []
         self.n_rows = n_rows
         self.n_columns = n_columns
-
-        for i in range(n_rows):
-            line = []
-            for j in range(n_columns):
-                line.append(".")
-            grid.append(line)
-
-        self.grid = grid
+        self.grid = [["."] * n_columns for _ in range(n_rows)]
 
         for row, column in coords:
             self.grid[row][column] = "*"
