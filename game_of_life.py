@@ -1,6 +1,3 @@
-from textwrap import wrap
-import copy
-
 class GameOfLife():
     
     def __init__(self,n_rows: int, n_columns: int):
