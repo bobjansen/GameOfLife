@@ -59,39 +59,34 @@ class GameOfLife:
                 continue
         return alive_count
 
-    @classmethod
-    def cycle(cls, board):
-        new_grid = board
+    def cycle(self):
+        new_grid = self.grid[:]
 
-        for i in range(board.n_rows):
-            for j in range(board.n_columns):
+        for i in range(self.n_rows):
+            for j in range(self.n_columns):
                 cell = [i, j]
-                alive_count = board.alive_count(cell)
+                alive_count = self.alive_count(cell)
                 # print(cell, alive_count)
 
                 # dying because of underpopulation
-                if alive_count < 2 and new_grid.grid[i][j] == "*":
-                    new_grid.grid[i][j] = "."
+                if alive_count < 2 and new_grid[i][j] == "*":
+                    new_grid[i][j] = "."
 
                 # dying because of overcrowding
-                if alive_count > 3 and new_grid.grid[i][j] == "*":
-                    new_grid.grid[i][j] = "."
+                if alive_count > 3 and new_grid[i][j] == "*":
+                    new_grid[i][j] = "."
 
                 # becoming alive because of lively neighbors
                 if alive_count == 3:
-                    new_grid.grid[i][j] = "*"
+                    new_grid[i][j] = "*"
 
-        # print(new_grid.format_grid())
-        return new_grid
+        self.grid = new_grid
 
-    @classmethod
-    def final_board(cls, board, n_runs: int):
+        return self
 
-        output = board
-        # print(output.format_grid(),"\n")
-
+    def final_board(self, n_runs: int):
         for i in range(n_runs):
-            output = GameOfLife.cycle(output)
-            print(output.format_grid(), "\n")
+            self.cycle()
+            print(self.format_grid(), "\n")
 
-        return output
+        return self
