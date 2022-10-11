@@ -32,8 +32,8 @@ class GameOfLife:
 
     # find neighbors of a single cell
     # NOTE: also return out of bounds indexes, is ommitted in later functions with try except
-    @classmethod
-    def locate_neighbors(cls, cell_index: list):
+    @staticmethod
+    def locate_neighbors(cell_index: list):
 
         neighbors = []
         row = cell_index[0]
