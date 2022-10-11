@@ -27,8 +27,8 @@ def test_locate_neighbors():
     assert set(input) == set(expected)
 
 
-def test_alive_count():
-    input = demo_grid.alive_count(2, 4)
+def test_count_neighbors():
+    input = demo_grid.count_neighbors(2, 4)
     expected = 2
     assert input == expected
 

@@ -37,30 +37,30 @@ class GameOfLife:
         neighbors.append((row + 1, column + 1))  # diagonal right lower
         return neighbors  # THESE ARE POSSIBLE NEIGHBORS, SO ALSO OUT OF GRID
 
-    def alive_count(self, row: int, column: int):
+    def count_neighbors(self, row: int, column: int):
         neighbors = GameOfLife.locate_neighbors(row, column)
-        alive_count = 0
+        neighbor_count = 0
 
         for neighbor_row, neighbor_column in neighbors:
             try:
                 if self.grid[neighbor_row][neighbor_column] == "*":
-                    alive_count += 1
+                    neighbor_count += 1
             except:
                 continue
-        return alive_count
+        return neighbor_count
 
     def cycle(self):
         new_grid = copy.deepcopy(self.grid)
 
         for row in range(self.n_rows):
             for column in range(self.n_columns):
-                alive_count = self.alive_count(row, column)
+                neighbor_count = self.count_neighbors(row, column)
 
                 # dying because of underpopulation
-                if alive_count < 2 or alive_count > 3:
+                if neighbor_count < 2 or neighbor_count > 3:
                     new_grid[row][column] = "."
                 # becoming alive because of lively neighbors
-                elif alive_count == 3:
+                elif neighbor_count == 3:
                     new_grid[row][column] = "*"
 
         self.grid = new_grid
